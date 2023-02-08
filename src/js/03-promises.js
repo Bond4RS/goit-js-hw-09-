@@ -1,3 +1,5 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 const firstDelayEl = document.querySelector('input[name="delay"]');
 const delayStepEl = document.querySelector('input[name="step"]');
 const amountEl = document.querySelector('input[name="amount"]');
