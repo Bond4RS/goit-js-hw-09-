@@ -1,18 +1,20 @@
-// Описаний в документації
-import flatpickr from "flatpickr";
-// Додатковий імпорт стилів
-import "flatpickr/dist/flatpickr.min.css";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const datetimeEl = document.querySelector("#datetime-picker");
-const startBtnEl = document.querySelector("button[data-start]");
-const spanDaysEl = document.querySelector("span[data-days]");
-const spanHoursEl = document.querySelector("span[data-hours]");
-const spanMinutesEl = document.querySelector("span[data-minutes]");
-const spanSecondsEl = document.querySelector("span[data-seconds]");
+// Описаний в документації
+import flatpickr from 'flatpickr';
+// Додатковий імпорт стилів
+import 'flatpickr/dist/flatpickr.min.css';
+
+const datetimeEl = document.querySelector('#datetime-picker');
+const startBtnEl = document.querySelector('button[data-start]');
+const spanDaysEl = document.querySelector('span[data-days]');
+const spanHoursEl = document.querySelector('span[data-hours]');
+const spanMinutesEl = document.querySelector('span[data-minutes]');
+const spanSecondsEl = document.querySelector('span[data-seconds]');
 
 let timerId = null;
 
-startBtnEl.setAttribute("disabled", true);
+startBtnEl.setAttribute('disabled', true);
 
 const options = {
   enableTime: true,
@@ -21,12 +23,12 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] - new Date() < 0) {
-      startBtnEl.setAttribute("disabled", true);
-      Notify.failure("Please choose a date in the future");
+      startBtnEl.setAttribute('disabled', true);
+      Notify.failure('Please choose a date in the future');
       return;
     }
-    startBtnEl.removeAttribute("disabled");
-    startBtnEl.addEventListener("click", () => {
+    startBtnEl.removeAttribute('disabled');
+    startBtnEl.addEventListener('click', () => {
       timerId = setInterval(() => {
         const timerTime = convertMs(selectedDates[0] - new Date());
         const { days, hours, minutes, seconds } = timerTime;
@@ -63,5 +65,5 @@ function convertMs(ms) {
 }
 
 function addLeadingZero(value) {
-  return String(value).padStart(2, "0");
+  return String(value).padStart(2, '0');
 }
